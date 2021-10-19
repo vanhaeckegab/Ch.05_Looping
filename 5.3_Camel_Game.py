@@ -8,7 +8,7 @@ import random
 import time
 
 q = False
-m = int(10)  # minutes remaining
+m = int(15)  # minutes remaining
 direction = 0  # weather or not you have directions, += 2 everytime you get directions and -=1 if you find a corridor
 rr = 20  # The remaining rooms you have to go through, find a good number that doesn't make it too easy or difficult
 tb = False
@@ -37,6 +37,13 @@ else:
     pass
 while not q:
     time.sleep(1)
+    if m <= 0:
+        print("Unfortunately your time is up, you fall to your knees as the poop fills your pants. You couldn't make it"
+              " this time, but tomorrow is another day.")
+        break
+    if rr == 0:
+        print("Congratulations, you did it. You sit on the toilet and have the best time relieving yourself ever.")
+        break
     m = round(m)
     print("it feels as if you have", m, "minutes left, what will you do?")
 
@@ -47,16 +54,9 @@ C). Get directions
 D). Grab a bible and pray
 E). Give in to natures calling
     ''')
-    if m == 0:
-        print("Unfortunately your time is up, you fall to your knees as the poop fills your pants. You couldn't make it"
-              "this time, but tomorrow is another day.")
-        break
-    if rr == 0:
-        print("Congratulations, you did it. You sit on the toilet and have the best time relieving yourself ever.")
-        break
     if m <= 10:
         if not tb:
-            if random.randint(1, 20) == 1:
+            if random.randint(1, 15) == 1:
                 time.sleep(1)
                 print("Uh oh")
                 time.sleep(.5)
@@ -71,11 +71,12 @@ E). Give in to natures calling
     choice = input("- ")
     if choice.upper() == "A" or choice.upper() == "B" or choice.lower() == "walk" or choice.lower() == "run":
         if direction == 0:
-            if random.randint(1, 10) <= 4:
+            if random.randint(1, 4) == 3:
                 rr += 1
                 c = random.randint(2, 4)
-                print("you run into a corridor that opens into", c, "different pathways. Which corridor"
+                print("you run into a corridor that opens into", c, "different pathways. Which corridor "
                                                                     "would you like to take? \n")
+                print("( pick a number 1 through", c, ")")
                 cc = input("- ")
                 if cc == random.randint(1, c):
                     print("You sprint down the corridor, continuing your journey to reach the royal throne. \n")
@@ -113,19 +114,19 @@ E). Give in to natures calling
                   "clue where he is. Losing hope in the older generation, you move on.\n")
         else:
             print("An old man hobbles over to you. Without a word he hands you a wooden sword. You don't see any use to"
-                  "this gift but you take it graciously.\n")
+                  " this gift but you take it graciously.\n")
         direction += 2
     elif choice.upper() == "D" or choice.lower() == "pray" or choice.lower() == "bible":
         print("You reach into you pocket for your trusty pocket  bible, it's never failed you before, hopefully it'll"
-              "help now.\n")
+              " help now.\n")
         if random.randint(1, 6969696969) == 69:
             print("The lord has taken pity on you and gave you a blessing. You no longer feel the need to relieve"
-                  "yourself, thanks to the blessing from the lord you win!\n")
+                  " yourself, thanks to the blessing from the lord you win!\n")
             break
         if tbm:
             if random.randint(1, 10) <= 6:
                 print("As you put your hand on the bible you are filled with heavenly power. The effects of last nights"
-                      "burrito adventure are reversed\n")
+                      " burrito adventure are reversed\n")
                 tbm = False
                 m *= 2
                 m += 1
@@ -135,6 +136,8 @@ E). Give in to natures calling
             if random.randint(1, 20) == 4:
                 print("The lord sees you in pain and decides to ease your struggle.\n")
                 m += 6
+            else:
+                print("You search for the holy one in your heart but feel nothing.")
         m -= 1
     elif choice.upper() == "E" or choice.lower() == "quit":
         print("You stand there in embarrassment as you choose to give up and willingly poop your pants.\n")
