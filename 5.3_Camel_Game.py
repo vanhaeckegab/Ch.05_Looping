@@ -80,7 +80,7 @@ E). Give in to natures calling
                 cc = input("- ")
                 if cc == random.randint(1, c):
                     print("You sprint down the corridor, continuing your journey to reach the royal throne. \n")
-                    rr += 1
+                    rr += 2
                 else:
                     print("The corridor you go down leads to nothing, you manage to backtrack but it takes a minute.\n")
                     m -= 1
